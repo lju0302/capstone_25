@@ -1,0 +1,200 @@
+/* --- 기본 설정 --- */
+@charset "utf-8";
+
+/* 인쇄 설정: A1 사이즈 고정, 여백 제거 */
+@page {
+    size: A1 portrait; /* 594mm x 841mm */
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e5e5e5; /* 인쇄 시 배경 그래픽 옵션 켜야 보임 */
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-print-color-adjust: exact; /* 배경색 강제 인쇄 */
+    print-color-adjust: exact;
+}
+
+/* --- 포스터 메인 컨테이너 (A1 실제 크기) --- */
+.poster {
+    width: 594mm;
+    height: 841mm;
+    padding: 20mm; /* 테두리 여백 2cm */
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 내용 넘침 방지 */
+}
+
+/* --- 헤더 --- */
+.poster-header {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+    border-radius: 16px;
+    margin-bottom: 20mm; /* 헤더 아래 여백 */
+    flex-shrink: 0;
+}
+
+.poster-title {
+    /* A1에서 제목은 아주 커야 함 (약 120px) */
+    font-size: 110px; 
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.2;
+    word-break: keep-all;
+}
+
+.poster-author {
+    /* 부제목/저자: 약 48px */
+    font-size: 40px;
+    margin-top: 20px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* --- 메인 레이아웃 --- */
+.poster-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20mm; /* 섹션 간 간격 */
+}
+
+/* 2단 컬럼 래퍼 */
+.two-column-wrapper {
+    display: flex;
+    gap: 20mm; /* 좌우 컬럼 사이 간격 */
+    flex-grow: 1;
+    align-items: flex-start; /* 높이 맞춤 해제 (필요 시 stretch로 변경) */
+}
+
+.poster-column {
+    flex: 1; /* 1:1 비율 */
+    display: flex;
+    flex-direction: column;
+    gap: 20mm;
+}
+
+/* --- 섹션 공통 스타일 --- */
+.section {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 40px; /* 내부 여백 */
+    box-shadow: none;
+    border: 2px solid #e5e7eb;
+}
+
+/* 1번, 7번 섹션처럼 가로 꽉 차는 섹션 */
+.section-full {
+    width: 100%;
+}
+
+.section-title {
+    /* 섹션 제목: 약 60px */
+    font-size: 56px; 
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 0;
+    margin-bottom: 24px;
+    border-bottom: 4px solid #1e3a8a;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* 본문 텍스트 기본 크기 */
+.section-body, p, li {
+    /* 본문: 약 32px (A4의 10~11pt 느낌) */
+    font-size: 32px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 16px;
+    text-align: justify; /* 양쪽 정렬 */
+}
+
+ul {
+    margin: 0;
+    padding-left: 40px;
+    list-style-type: disc;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* --- 강조 박스 (Highlight Box) --- */
+.highlight-box {
+    background-color: #eff6ff; /* 연한 파랑 */
+    border-left: 10px solid #1e3a8a;
+    padding: 24px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.highlight-box p {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.callout {
+    background-color: #fef3c7; /* 연한 노랑 */
+    border: 3px dashed #d97706;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: 700;
+    color: #92400e;
+    text-align: center;
+}
+
+/* --- 표 (Table) 스타일 --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 28px; /* 표 폰트는 본문보다 살짝 작게 */
+}
+
+.data-table th, .data-table td {
+    border: 2px solid #d1d5db;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.data-table th {
+    background-color: #f3f4f6;
+    color: #111;
+    font-weight: 700;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+/* --- 이미지 및 그래프 --- */
+.img-box {
+    text-align: center;
+    margin: 20px 0;
+    border: 2px solid #eee;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.graph-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.graph-caption {
+    font-size: 26px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}

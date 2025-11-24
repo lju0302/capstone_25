@@ -95,7 +95,7 @@
 
                 <!-- 3. 이질적 성장 패턴 분류 -->
                 <section class="section">
-                    <h2 class="section-title">3. 이질적 성장 패턴 분류 (K-Means)</h2>
+                    <h2 class="section-title">3. 곡별 성장 곡선 유형 분류 (K-Means)</h2>
                     <p><strong>목적</strong>: 곡마다 상이한 성장 곡선을 군집화하여 TikTok 반응의 정성적 차원을 정의.</p>
                     <p><strong>방법</strong>: K-Means (k=6), 피처는 peak shape·volatility·baseline 등 스트리밍 궤적 특성으로 구성.</p>
                     <table class="data-table">
@@ -105,6 +105,7 @@
                         <tr><td>C4</td><td>급성장형</td><td>짧은 기간 급등 후 유지</td></tr>
                         <tr><td>C5</td><td>고변동형</td><td>반복적 급등·급락</td></tr>
                     </table>
+                    <div class="graph-caption">* C2·C3는 소수 패턴으로 도식상 생략함.</div>
                     <div class="callout">
                         <ul>
                             <li>TikTok 효과가 높은 곡들은 특정 패턴(C4·C5)에 집중</li>
@@ -115,7 +116,7 @@
 
                 <!-- 4. TikTok 기여도(ATE) 추정 — KSARIMA -->
                 <section class="section">
-                    <h2 class="section-title">4. TikTok 기여도(ATE) 추정 — KSARIMAX</h2>
+                    <h2 class="section-title">4. TikTok 인과 기여도 정량화 (KSARIMAX)</h2>
                     <p><strong>모델 발전</strong></p>
                     <table class="data-table">
                         <tr><th>모델</th><th>역할</th><th>한계 / RMSE</th></tr>
@@ -123,7 +124,9 @@
                         <tr><td>SARIMAX</td><td>7일 주기 계절성 반영</td><td>곡 간 이질성 미포착 / 0.00028</td></tr>
                         <tr><td>KSARIMAX</td><td>군집 + 구조변화 반영</td><td>0.00018 (최종)</td></tr>
                     </table>
-                    <p><strong>Counterfactual</strong>: Viral onset 이전 구간으로 KSARIMAX를 학습하고, TikTok=0으로 두었을 때의 가상 스트리밍 경로 Ŷ<sup>CF</sup>를 생성. 실제 Y와의 차이를 ATE로 정의.</p>
+                    <!-- <p><strong>Counterfactual</strong>: Viral onset 이전 구간으로 KSARIMAX를 학습하고, TikTok=0으로 두었을 때의 가상 스트리밍 경로 Ŷ<sup>CF</sup>를 생성. 실제 Y와의 차이를 ATE로 정의.</p> -->
+                    <p><strong>Counterfactual</strong>: Viral onset(7일 이동평균 기준 상승 전환 시점) 이전 데이터를 학습하고, 이후 구간은 TikTok=0으로 두어 가상 스트리밍 경로 Ŷ<sup>CF</sup>를 생성함.</p>
+                    <p>ATE는 onset 이후 T일 동안 실제 Y와 가상 Ŷ<sup>CF</sup>의 누적 차이 Σ(Y − Ŷ<sup>CF</sup>)로 정의함.</p>
                     <div class="highlight-box">
                         <p><strong>결과 요약</strong></p>
                         <ul>
@@ -141,11 +144,13 @@
                 <!-- 5. TikTok 바이럴 유형학 (Viral Map) -->
                 <section class="section">
                     <h2 class="section-title">5. TikTok 바이럴 유형학 (The Viral Map)</h2>
-                    <p>ATE가 높다고 해서 모두 “좋은 바이럴”은 아니다. TikTok 이후 <strong>반응성(Reactivity)</strong>과 <strong>지속성(Retention)</strong>이 얼마나 유지되는지가 중요</p>
+                    <p>ATE가 높다고 해서 모두 <strong>“좋은 바이럴”이 아님.</strong> 
+                        <br> TikTok 이후 <strong>반응성(Reactivity)</strong>과 <strong>지속성(Retention)</strong>이 얼마나 유지되는지가 중요</p>
                     <p>각 곡에 대해 TikTok 민감도(β)와 이후 스트리밍 유지력 지표를 산출하여 2차원 평면에 매핑</p>
                     <!-- scatter 그래프 -->
                     <img class="graph-image" src="viral_map_scatter.png" alt="Song-level Sensitivity vs Retention Scatter">
                     <div class="graph-caption">그림 2. 곡별 민감도(β)–지속성(Retention) 산점도. 1사분면이 이상적 바이럴(높은 반응 + 높은 유지력)에 해당.</div>
+                    <div class="graph-caption"> * Reactivity·Retention 각각의 중앙값을 기준으로 사분면을 구분함. </div>
                     <table class="data-table">
                         <tr><th>구역</th><th>유형</th><th>특징</th></tr>
                         <tr><td>Ⅰ사분면</td><td>이상적 바이럴 (Star)</td><td>Reactivity ↑, Retention ↑</td></tr>
@@ -157,7 +162,7 @@
 
                 <!-- 6. 1사분면 사전 예측 — XGBoost -->
                 <section class="section">
-                    <h2 class="section-title">6. 1사분면(이상적 바이럴) 사전 예측 — XGBoost</h2>
+                    <h2 class="section-title">6. 이상적 바이럴 후보 곡 사전 예측 (XGBoost)</h2>
                     <p><strong>목적</strong>: “어떤 곡이 1사분면(이상적 바이럴)에 들어갈까?”를 발매 전에 예측.</p>
                     <ul>
                         <li>타깃: 1 = 1사분면, 0 = 나머지</li>

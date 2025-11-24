@@ -15,7 +15,40 @@
         <div class="poster-author">김경모, 이재웅 · 지도교수 정진우 / 서울과학기술대학교 산업정보시스템전공</div>
     </header>
 
-    <main class="poster-content">
+        <main class="poster-content">
+            <!-- 1. 연구 배경 및 목적 -->
+            <section class="section section-full">
+                
+
+                <div class="two-column-wrapper">
+                    
+                    <!-- 왼쪽 컬럼: 연구 배경 -->
+                    <div class="poster-column">
+                        <h2 class="section-title">1. 연구 배경 및 목적</h2> 
+                        <p>
+                            TikTok·Instagram과 같은 숏폼 플랫폼은 음악 스트리밍에 강한 영향을 미치지만, 
+                            모든 곡이 동일하게 반응하지 않는 <strong>이질성(heterogeneity)</strong>이 존재한다. 
+                            동일한 조회수라도 어떤 곡은 급등하고, 어떤 곡은 거의 변동이 없다.
+                            기존 연구는 주로 평균적 효과에 집중하여, 
+                            “왜 어떤 곡은 터지고 어떤 곡은 안 터지는가?”라는 질문에 충분히 답하지 못했다.
+                        </p>
+                    </div>
+
+                    <!-- 오른쪽 컬럼: 연구 목적 highlight -->
+                    <div class="poster-column">
+                        <div class="highlight-box">
+                            <p><strong>본 연구의 목적</strong></p>
+                            <ul>
+                                <li>① TikTok에 대한 <strong>이질적 반응 패턴(Cluster)</strong> 분류</li>
+                                <li>② KSARIMAX 기반 <strong>TikTok 정량 기여도(ATE)</strong> 추정</li>
+                                <li>③ Reactivity × Retention을 활용한 <strong>바이럴 유형학(Viral Typology)</strong> 정립</li>
+                                <li>④ 이상적 바이럴(1사분면) 사전 예측을 위한 <strong>XGBoost 모델</strong> 구축</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
         <!-- 1. 연구 배경 및 목적 (FULL WIDTH) -->
         <!-- <section class="section section-full">
             <h2 class="section-title">1. 연구 배경 및 목적</h2>
@@ -36,21 +69,7 @@
         <div class="two-column-wrapper">
             <!-- LEFT COLUMN : 1,2,3,4 -->
             <div class="poster-column">
-                <!-- 1. 연구 배경 및 목적 -->
-                <section class="section section-full">
-                    <h2 class="section-title">1. 연구 배경 및 목적</h2>
-                    <p>TikTok·Instagram과 같은 숏폼 플랫폼은 음악 스트리밍에 강한 영향을 미치지만, 모든 곡이 동일하게 반응하지 않는 <strong>이질성(heterogeneity)</strong>이 존재한다. 동일한 조회수라도 어떤 곡은 급등하고, 어떤 곡은 거의 변동이 없다.</p>
-                    <p>기존 연구는 주로 평균적 효과에 집중하여, “왜 어떤 곡은 터지고 어떤 곡은 안 터지는가?”라는 질문에 충분히 답하지 못했다.</p>
-                    <div class="highlight-box">
-                        <p><strong>본 연구의 목적</strong></p>
-                        <ul>
-                            <li>① TikTok에 대한 <strong>이질적 반응 패턴(Cluster)</strong> 분류</li>
-                            <li>② KSARIMA 기반 <strong>TikTok 정량 기여도(ATE)</strong> 추정</li>
-                            <li>③ Reactivity × Retention을 활용한 <strong>바이럴 유형학(Viral Typology)</strong> 정립</li>
-                            <li>④ 이상적 바이럴(1사분면) 사전 예측을 위한 <strong>XGBoost 모델</strong> 구축</li>
-                        </ul>
-                    </div>
-                </section>
+                
                 <!-- 2. 데이터 및 EDA -->
                 <section class="section">
                     <h2 class="section-title">2. 데이터 및 EDA</h2>
@@ -62,6 +81,8 @@
                         <tr><td>메타데이터</td><td>장르, 소속사 규모, 발매연도, MV 존재 등</td></tr>
                         <tr><td>분석 단위</td><td>곡별 일일 스트리밍 증감률 (로그 차분)</td></tr>
                     </table>
+                    <img class="graph-image-erd" src="ERD.png" alt="데이터 개요 그래프">
+                    <div class="graph-caption">그림 0. 주요 데이터 (간략)</div>
                     <p><strong>플랫폼 구조의 이질성</strong></p>
                     <ul>
                         <li>TikTok: 급성장형, 강한 초반 충격과 잔존 효과</li>
@@ -85,21 +106,24 @@
                         <tr><td>C5</td><td>고변동형</td><td>반복적 급등·급락</td></tr>
                     </table>
                     <div class="callout">
-                        TikTok 효과가 높은 곡들은 특정 패턴(C4·C5)에 집중되어 나타나며, 이는 효과가 평균적이 아니라 <strong>선택적(selective)</strong>임을 시사한다.
+                        <ul>
+                            <li>TikTok 효과가 높은 곡들은 특정 패턴(C4·C5)에 집중</li>
+                            <li>이는 효과가 평균적이 아니라 <strong>선택적(selective)</strong>임을 시사</li>
+                        </ul>
                     </div>
                 </section>
 
                 <!-- 4. TikTok 기여도(ATE) 추정 — KSARIMA -->
                 <section class="section">
-                    <h2 class="section-title">4. TikTok 기여도(ATE) 추정 — KSARIMA</h2>
+                    <h2 class="section-title">4. TikTok 기여도(ATE) 추정 — KSARIMAX</h2>
                     <p><strong>모델 발전</strong></p>
                     <table class="data-table">
                         <tr><th>모델</th><th>역할</th><th>한계 / RMSE</th></tr>
                         <tr><td>ARIMAX</td><td>TikTok → Streaming 기본 구조</td><td>계절성·구조변화 반영 한계 / 0.00479</td></tr>
                         <tr><td>SARIMAX</td><td>7일 주기 계절성 반영</td><td>곡 간 이질성 미포착 / 0.00028</td></tr>
-                        <tr><td>KSARIMA</td><td>군집 + 구조변화 반영</td><td>0.00018 (최종)</td></tr>
+                        <tr><td>KSARIMAX</td><td>군집 + 구조변화 반영</td><td>0.00018 (최종)</td></tr>
                     </table>
-                    <p><strong>Counterfactual</strong>: Viral onset 이전 구간으로 KSARIMA를 학습하고, TikTok=0으로 두었을 때의 가상 스트리밍 경로 Ŷ<sup>CF</sup>를 생성. 실제 Y와의 차이를 ATE로 정의.</p>
+                    <p><strong>Counterfactual</strong>: Viral onset 이전 구간으로 KSARIMAX를 학습하고, TikTok=0으로 두었을 때의 가상 스트리밍 경로 Ŷ<sup>CF</sup>를 생성. 실제 Y와의 차이를 ATE로 정의.</p>
                     <div class="highlight-box">
                         <p><strong>결과 요약</strong></p>
                         <ul>
@@ -117,10 +141,10 @@
                 <!-- 5. TikTok 바이럴 유형학 (Viral Map) -->
                 <section class="section">
                     <h2 class="section-title">5. TikTok 바이럴 유형학 (The Viral Map)</h2>
-                    <p>ATE가 높다고 해서 모두 “좋은 바이럴”은 아니다. TikTok 이후 <strong>반응성(Reactivity)</strong>과 <strong>지속성(Retention)</strong>이 얼마나 유지되는지가 중요하다.</p>
-                    <p>각 곡에 대해 TikTok 민감도(β)와 이후 스트리밍 유지력 지표를 산출하여 2차원 평면에 매핑하였다.</p>
+                    <p>ATE가 높다고 해서 모두 “좋은 바이럴”은 아니다. TikTok 이후 <strong>반응성(Reactivity)</strong>과 <strong>지속성(Retention)</strong>이 얼마나 유지되는지가 중요</p>
+                    <p>각 곡에 대해 TikTok 민감도(β)와 이후 스트리밍 유지력 지표를 산출하여 2차원 평면에 매핑</p>
                     <!-- scatter 그래프 -->
-                    <img class="graph-image" src="viral_map_scatter_edit.png" alt="Song-level Sensitivity vs Retention Scatter">
+                    <img class="graph-image" src="viral_map_scatter.png" alt="Song-level Sensitivity vs Retention Scatter">
                     <div class="graph-caption">그림 2. 곡별 민감도(β)–지속성(Retention) 산점도. 1사분면이 이상적 바이럴(높은 반응 + 높은 유지력)에 해당.</div>
                     <table class="data-table">
                         <tr><th>구역</th><th>유형</th><th>특징</th></tr>
@@ -148,7 +172,7 @@
                     <div class="callout">
                         <ul>
                             <li> 곡의 메타정보만으로도 <strong>이상적 바이럴 가능성 사전 판별</strong> 가능</li>
-                            <li> 즉, 마케팅 초기에 <strong>타깃 후보곡 선별</strong> 가능</li>
+                            <li> 마케팅 초기에 <strong>타깃 후보곡 선별</strong> 가능</li>
                         </ul>
                     </div>
                     <table class="data-table">
@@ -190,13 +214,16 @@
                     <h2 class="section-title">7. 결론 및 통합 프레임워크</h2>
                     <p><strong>최종 결론</strong></p>
                     <ul>
-                        <li>TikTok 효과는 평균적이 아니라 <strong>이질적·선택적</strong>이다. 특정 패턴(C4·C5)과 특정 유형(1사분면)에서만 강한 반응이 집중된다.</li>
-                        <li>KSARIMA 기반 Counterfactual 추정을 통해 TikTok의 인과적 기여도를 곡 수준에서 정량화할 수 있었다.</li>
-                        <li>Reactivity × Retention Viral Map과 XGBoost 예측을 결합하여, “어떤 곡에 언제 TikTok을 써야 하는가”에 대한 실무적 프레임워크를 제시한다.</li>
+                        <li>TikTok 효과는 평균적이 아니라 <strong>이질적·선택적</strong>이다. 특정 패턴(C4·C5)과 특정 유형(1사분면)에서만 강한 반응 집중</li>
+                        <li>KSARIMAX 기반 Counterfactual 추정을 통해 TikTok의 인과적 기여도를 곡 수준에서 정량화함</li>
+                        <li>Reactivity × Retention Viral Map과 XGBoost 예측을 결합하여, “어떤 곡에 언제 TikTok을 써야 하는가”에 대한 실무적 프레임워크 제시</li>
                     </ul>
                     <div class="highlight-box">
                         <p><strong>통합 프레임워크</strong></p>
-                        <p>① 시계열 기반 TikTok ATE 추정 → ② Viral Map으로 유형 분류 → ③ XGBoost로 이상적 바이럴 후보 선별 → ④ 캠페인 설계 및 예산 배분 의사결정에 활용.</p>
+                        <p>① 시계열 기반 TikTok ATE 추정 <br>
+                            ② Viral Map으로 유형 분류 <br>
+                            ③ XGBoost로 이상적 바이럴 후보 선별 <br>
+                            ④ 캠페인 설계 및 예산 배분 의사결정에 활용.</p>
                     </div>
                 </section>
 

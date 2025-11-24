@@ -193,10 +193,30 @@ li {
     margin: 0 auto;
 }
 
+.graph-image-erd {
+    width: 60%; /* 섹션 폭 전체 사용 */
+    max-width: none;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .graph-caption {
     font-size: 26px;
     color: #666;
     text-align: center;
     margin-top: 10px;
     font-style: italic;
+}
+
+.section-full {
+    margin-bottom: 60px; /* 또는 40~80px 원하는 값 */
+}
+
+.section-full {
+    border: 1px solid #e0e0e0;   /* 은은한 라인 */
+    border-radius: 10px;         /* 살짝 둥글게 */
+    padding: 24px 28px;          /* 내부 여백 */
+    margin-bottom: 48px;         /* 2번과 간격 */
+    background: #ffffff;         /* 인쇄용 대비 */
 }

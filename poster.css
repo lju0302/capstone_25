@@ -152,6 +152,17 @@ li {
     text-align: center;
 }
 
+.callout2 {
+    background-color: #eff6ff; /* 연한 회색 */
+    border: 3px dashed #aeadac;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    color: #858585;
+    text-align: center;
+}
+
+
 /* --- 표 (Table) 스타일 --- */
 .data-table {
     width: 100%;
@@ -215,4 +226,86 @@ li {
     padding: 24px 28px;          /* 내부 여백 */
     margin-bottom: 48px;         /* 2번과 간격 */
     background: #ffffff;         /* 인쇄용 대비 */
+}
+
+
+/* --- 섹션 2 이미지 2열 배치 --- */
+.image-row {
+    display: flex;
+    gap: 10mm;          /* 두 그림 사이 간격 */
+    margin: 20px 0;
+    align-items: flex-start;
+}
+
+.image-col:first-child {
+    flex: 0.8; /* 왼쪽 ERD 너비 줄임 */
+    margin-right: 8mm;
+}
+
+.image-col:last-child {
+    flex: 1.2; /* 오른쪽 그래프 넓힘 */
+}
+
+/* 한 줄에 들어갈 때는 칼럼 안에서 꽉 차게 */
+.image-row .graph-image,
+.image-row .graph-image-erd {
+    width: 100%;
+    max-width: none;
+}
+
+
+/* === 6번 섹션 전용 표 스타일 === */
+.viral-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 30px;
+}
+
+/* 기본 셀 */
+.viral-table th, .viral-table td {
+    border: 2px solid #d1d5db;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+/* TH 기본 스타일 */
+.viral-table th {
+    background-color: #f3f4f6;
+    color: #111;
+    font-weight: 700;
+}
+
+/* === 3번째 컬럼 강조 === */
+.viral-table td:nth-child(3),
+.viral-table th:nth-child(3) {
+    background-color: #e8f1ff;
+    color: #1e3a8a;
+    font-weight: 800;
+}
+
+.viral-table .prob-cell.high { color: #1e3a8a; font-weight: 800; }
+.viral-table .prob-cell.low { color: #b91c1c; font-weight: 800; }
+
+.data-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 8px;
+    font-size: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-step {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    white-space: nowrap;
+}
+
+.flow-arrow {
+    font-size: 32px;
+    padding: 0 4px;
 }
